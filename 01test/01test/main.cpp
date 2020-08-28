@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
 
     qDebug()<<"hello world";
 
-    w.resize(600, 600);
-    w.setWindowTitle("Hello World");
+    //w.resize(600, 600);
+    //w.setWindowTitle("Hello World");
 
     w.show();   //将创建的窗口控件显示
     qDebug()<<"test of test 世界你好！";
