@@ -12,5 +12,6 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
     QPushButton *button;
+    QPushButton * btn;
 };
 #endif // WIDGET_H

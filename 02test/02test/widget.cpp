@@ -1,9 +1,17 @@
 #include "widget.h"
 #include <QPushButton>
+#include "mypushbutton.h"
+#include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
 {
+    btn = new QPushButton;
+    btn->setParent(this);
+    btn->setText("我的第一个按钮");
+    btn->move(200,200);
+    btn->show();
+
     // new 一个对象 QPushButton
     button = new QPushButton;
     //构造函数时，指定父对象
@@ -20,9 +28,18 @@ Widget::Widget(QWidget *parent)
     button->move(100,100);      //设置按钮在窗口的位置
     //button->setText("按钮点这里"); // 设置按钮的文本
 
+    //新建MyPushButton按钮
+    MyPushButton * myBtn = new MyPushButton;
+    //设置属性
+    myBtn->setParent(this);
+    myBtn->setText("我自己的按钮");
+    myBtn->move(200,0);
+    myBtn->show();
+
 }
 
 Widget::~Widget()
 {
+    qDebug() << "我的Widget析构函数";
 }
 
