@@ -36,6 +36,11 @@ Widget::Widget(QWidget *parent)
     myBtn->move(200,0);
     myBtn->show();
 
+    //需求：点击按钮，关闭当前窗口
+    //使用connect函数，参数1 信号的发送者, 参数2 发送的具体信号， 参数3 信号的接收者， 参数4 信号的处理（槽）
+    connect(btn, &QPushButton::clicked, this, &QWidget::close);
+    connect(myBtn,&MyPushButton::clicked, this, &MyPushButton::close);
+
 }
 
 Widget::~Widget()
