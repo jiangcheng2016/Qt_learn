@@ -12,6 +12,7 @@ public:
     //早期的qt版本，必须写道public slot下，高级版本可以写到public或者全局下，这里没有public slot ，所以写到public 下
     //返回值是void 需要证明，也需要实现
     void treat();
+    void treat(QString foodName);
 signals:
 
 };
