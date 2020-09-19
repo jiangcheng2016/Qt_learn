@@ -29,9 +29,25 @@ Widget::Widget(QWidget *parent)
     void(Student:: *studentSlot)(QString) = &Student::treat;
     connect(ls,teacherSignal,st,studentSlot);
     //调用下课函数
-    classIsOver();
+    //classIsOver();
 
+    //点击按钮，触发下课
+    QPushButton *btn = new QPushButton;
+    this->resize(400,400);
+    btn->setText("下课");
+    btn->move(100,100);
+    btn->setParent(this);
+    //connect(btn,&QPushButton::clicked, this,&Widget::classIsOver);
 
+    //无参信号和槽连接
+    void(Teacher:: *teacherSignal2)(void) = &Teacher::hungry;
+    void(Student:: *studentSlot2)(void) = &Student::treat;
+    connect(ls,teacherSignal2,st,studentSlot2);
+
+    //信号连接信号
+    connect(btn,&QPushButton::clicked,ls,teacherSignal2);
+    //断开信号
+    disconnect(ls,teacherSignal2,st,studentSlot2);
 }
 
 void Widget::classIsOver()
