@@ -2,6 +2,8 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include "teacher.h"
+#include "student.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -17,5 +19,8 @@ public:
 
 private:
     Ui::Widget *ui;
+    Teacher * ls;
+    Student * st;
+    void classIsOver();
 };
 #endif // WIDGET_H
