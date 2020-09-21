@@ -2,6 +2,7 @@
 #include "ui_widget.h"
 
 #include <QPushButton>
+#include <QDebug>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -33,7 +34,7 @@ Widget::Widget(QWidget *parent)
 
     //点击按钮，触发下课
     QPushButton *btn = new QPushButton;
-    this->resize(400,400);
+    this->resize(500,400);
     btn->setText("下课");
     btn->move(100,100);
     btn->setParent(this);
@@ -47,7 +48,32 @@ Widget::Widget(QWidget *parent)
     //信号连接信号
     connect(btn,&QPushButton::clicked,ls,teacherSignal2);
     //断开信号
-    disconnect(ls,teacherSignal2,st,studentSlot2);
+    //disconnect(ls,teacherSignal2,st,studentSlot2);
+
+    QPushButton *btn2 = new QPushButton;
+
+    //lambda 表达式
+    [=](){
+        btn->setText("test");
+        btn2->setText("btn2");
+        btn2->setParent(this);//若[]里面为btn，则函数体只识别btn, 故btn2无法识别
+    }();  //没有(),函数就不会调用，此时不执行；加上()，函数调用，btn属性改变
+
+    //mutable 关键字
+    //mutable 用于修饰值传递的变量，修改的是拷贝，而不是本体
+    QPushButton *myBtn =new QPushButton("myBtn",this);
+    QPushButton *myBtn2 = new QPushButton("myBtn2",this);
+
+    int m = 10;
+
+    myBtn->move(300,300);
+    myBtn2->move(350,350);
+
+    connect(myBtn,&QPushButton::clicked,this,[m]()mutable {m = 100 + 10; qDebug() << m;});
+    connect(myBtn2,&QPushButton::clicked,this,[=](){
+        qDebug() << m;
+    });
+    qDebug() << m;
 }
 
 void Widget::classIsOver()
