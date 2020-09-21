@@ -74,6 +74,20 @@ Widget::Widget(QWidget *parent)
         qDebug() << m;
     });
     qDebug() << m;
+
+    //使用lambda表达式实现点击按钮关闭窗口
+    QPushButton *btn3 = new QPushButton;
+    btn3->setText("关闭");
+    btn3->move(100,0);
+    btn3->setParent(this);
+    connect(btn3, &QPushButton::clicked, this, [=](){
+        //this->close();
+        //emit ls->hungry("北京烤鸭");
+
+        btn3->setText("宫爆鸡丁");
+    });
+    //lambda 常用表达式 [](){}
+
 }
 
 void Widget::classIsOver()
