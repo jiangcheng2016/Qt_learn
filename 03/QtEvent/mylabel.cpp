@@ -47,3 +47,16 @@ void MyLabel::mouseMoveEvent(QMouseEvent *ev){
         qDebug() << str ;
     //}
 }
+
+bool MyLabel::event(QEvent *e)
+{
+    //如果是鼠标按下，在event事件分发中做拦截操作
+    if (e->type() == QEvent::MouseButtonPress)
+    {
+        QMouseEvent *ev = static_cast<QMouseEvent *>(e);   //静态类型转换
+
+        QString str = QString("Event鼠标按压的位置为： x =%1 y = %2 globalx = %3  global4 = %4 ").arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
+        qDebug() << str ;
+    }
+}
+
