@@ -197,16 +197,16 @@ void MainWindow::readFile(){
         return;
     //3-读取数据
     QByteArray fileData = file.readAll();
-    int numOfData = fileData.size() / 65;
+    int numOfData = (fileData.size()-4) / 71;
     maxLen = numOfData;
     qDebug() << "channel file length:" << fileData.size() << " num of data:" << numOfData;
+    //qDebug() << fileData.toHex();
    // ui->plainTextEdit->appendPlainText(fileData.toHex());
-
 
     QByteArray buffer;
     for(int i = 0; i < numOfData; i ++)
     {
-        buffer = this->subByteArray(fileData,i * 65, 65);
+        buffer = this->subByteArray(fileData,i * 71+4, 71);
         dataList.append(buffer);
 
         /*
@@ -257,4 +257,4 @@ void MainWindow::on_btnStopSend_clicked()
 {
     if(this->myTimer != NULL)
         this->myTimer->stop();
-}
+}                                                                                                                    
